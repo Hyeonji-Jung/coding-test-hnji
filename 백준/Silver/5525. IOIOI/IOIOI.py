@@ -1,17 +1,19 @@
 import sys
 input = sys.stdin.readline
 
-Pn = "IO" * (int(input())) + "I"
+N = int(input())
 M = int(input())
 S = input().rstrip()
-cnt = 0
+ans, i, cnt = 0, 0, 0
 
-def findSubstr(start):
-    global cnt
-    if Pn == S[start : start + len(Pn)]:
+while i < M - 1:
+    if S[i : i + 3] == "IOI":
         cnt += 1
-
-for i in range(len(S)):
-    if S[i] == "I":
-        findSubstr(i)
-print(cnt)
+        i += 2
+        if cnt == N:
+            ans += 1
+            cnt -= 1
+    else:
+        i += 1
+        cnt = 0
+print(ans)
