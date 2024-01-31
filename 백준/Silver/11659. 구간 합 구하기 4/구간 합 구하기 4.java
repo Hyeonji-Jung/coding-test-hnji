@@ -7,7 +7,7 @@ public class Main {
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	private static StringBuilder sb = new StringBuilder();
 	private static StringTokenizer tokens;
-	
+
 	private static int N, M;
 	private static int[] sums;
 
@@ -15,13 +15,13 @@ public class Main {
 		tokens = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(tokens.nextToken());
 		M = Integer.parseInt(tokens.nextToken());
-		
+
 		sums = new int[N];
 		tokens = new StringTokenizer(br.readLine());
 		sums[0] = Integer.parseInt(tokens.nextToken());
 		for (int i = 1; i < N; i++)
 			sums[i] = sums[i - 1] + Integer.parseInt(tokens.nextToken());
-		
+
 		for (int m = 0; m < M; m++) {
 			tokens = new StringTokenizer(br.readLine());
 			int i = Integer.parseInt(tokens.nextToken()) - 1;
