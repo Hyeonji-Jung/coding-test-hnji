@@ -8,8 +8,8 @@ public class Main {
 	private static StringBuilder sb = new StringBuilder();
 	private static StringTokenizer tokens;
 
-	private static int[][] arr;
 	private static int N, M;
+	private static int[][] arr;
 
 	public static void main(String[] args) throws Exception {
 		tokens = new StringTokenizer(br.readLine());
@@ -17,9 +17,9 @@ public class Main {
 		M = Integer.parseInt(tokens.nextToken());
 		arr = new int[N + 1][N + 1];
 
-		for (int i = 1; i < N + 1; i++) {
+		for (int i = 1; i <= N; i++) {
 			tokens = new StringTokenizer(br.readLine());
-			for (int j = 1; j < N + 1; j++) {
+			for (int j = 1; j <= N; j++) {
 				int temp = Integer.parseInt(tokens.nextToken());
 				arr[i][j] = arr[i][j - 1] + arr[i - 1][j] - arr[i - 1][j - 1] + temp;
 			}
