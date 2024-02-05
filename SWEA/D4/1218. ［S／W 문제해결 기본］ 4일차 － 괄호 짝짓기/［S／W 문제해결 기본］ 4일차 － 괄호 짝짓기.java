@@ -14,6 +14,10 @@ public class Solution {
 		for (int t = 1; t <= 10; t++) {
 			br.readLine();
 			char[] braces = br.readLine().trim().toCharArray();
+			if (braces.length % 2 == 1) {
+				sb.append("#").append(t).append(" ").append(0).append("\n");
+				continue;
+			}
 			stack = new ArrayDeque<>();
 			int flag = 1;
 
@@ -36,11 +40,13 @@ public class Solution {
 						flag = 0;
 					break;
 				default:
-					stack.add(brace);
+					stack.offer(brace);
 				}
 				if (flag == 0)
 					break;
 			}
+			if (!stack.isEmpty())
+				flag = 0;
 			sb.append("#").append(t).append(" ").append(flag).append("\n");
 		}
 		System.out.println(sb);
