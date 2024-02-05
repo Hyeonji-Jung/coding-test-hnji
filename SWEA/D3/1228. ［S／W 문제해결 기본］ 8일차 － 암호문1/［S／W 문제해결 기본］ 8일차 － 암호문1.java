@@ -97,6 +97,7 @@ public class Solution {
 					nums[j] = Integer.parseInt(tokens.nextToken());
 				codes.add(x, y, nums);
 			}
+
 			sb.append("#").append(t).append(" ").append(codes.toString()).append("\n");
 		}
 		System.out.println(sb);
