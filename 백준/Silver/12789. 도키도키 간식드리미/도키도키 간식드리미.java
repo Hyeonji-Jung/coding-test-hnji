@@ -16,22 +16,17 @@ public class Main {
 		N = Integer.parseInt(br.readLine());
 		tokens = new StringTokenizer(br.readLine());
 
-		int curr = 1;
+		int curr = 0;
 		for (int i = 0; i < N; i++) {
 			int num = Integer.parseInt(tokens.nextToken());
-			if (num != curr)
+			if (num != curr + 1)
 				stack.offerFirst(num);
-			else {
+			else
 				curr++;
-				while (!stack.isEmpty() && stack.peek() == curr) {
-					stack.pollFirst();
-					curr++;
-				}
+			while (!stack.isEmpty() && stack.peek() == curr + 1) {
+				stack.pollFirst();
+				curr++;
 			}
-		}
-		while (!stack.isEmpty() && stack.peek() == curr + 1) {
-			stack.pollFirst();
-			curr++;
 		}
 		System.out.println(stack.isEmpty() ? "Nice" : "Sad");
 	}
