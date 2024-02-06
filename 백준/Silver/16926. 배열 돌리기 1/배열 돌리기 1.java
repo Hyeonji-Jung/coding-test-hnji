@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -10,36 +12,56 @@ public class Main {
 
 	private static int N, M, R, depth;
 	private static int[][] matrix;
-
-	private static void rotate() {
-		int[][] temp = new int[N][M];
-		for (int d = 0; d < depth; d++) {
-			for (int c = M - d - 1; c > d; c--)
-				temp[d][c - 1] = matrix[d][c];
-			for (int c = d; c < M - d - 1; c++)
-				temp[N - d - 1][c + 1] = matrix[N - d - 1][c];
-			for (int r = d; r < N - d - 1; r++)
-				temp[r + 1][d] = matrix[r][d];
-			for (int r = N - d - 1; r > d; r--)
-				temp[r - 1][M - d - 1] = matrix[r][M - d - 1];
-		}
-		matrix = temp;
-	}
+	private static Deque<Integer>[] layers;
 
 	public static void main(String[] args) throws Exception {
 		tokens = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(tokens.nextToken());
 		M = Integer.parseInt(tokens.nextToken());
 		R = Integer.parseInt(tokens.nextToken());
-		depth = Math.min(N, M) / 2;
 		matrix = new int[N][M];
 		for (int i = 0; i < N; i++) {
 			tokens = new StringTokenizer(br.readLine());
 			for (int j = 0; j < M; j++)
 				matrix[i][j] = Integer.parseInt(tokens.nextToken());
 		}
-		for (int i = 0; i < R; i++)
-			rotate();
+		
+		depth = Math.min(N, M) / 2;
+		layers = new Deque[depth];
+		for (int i = 0; i < depth; i++) {
+			layers[i] = new ArrayDeque<>();
+			int r = i;
+			int c = i;
+			do {
+				layers[i].add(matrix[r][c]);
+				if (r == i && c < M - i - 1)
+					c++;
+				else if (r < N - i - 1 && c == M - i - 1)
+					r++;
+				else if (r == N - i - 1 && c > i)
+					c--;
+				else
+					r--;
+			} while (r != i || c != i);
+			
+			for (int j = 0; j < R; j++)
+				layers[i].offer(layers[i].poll());
+			
+			r = i;
+			c = i;
+			do {
+				matrix[r][c] = layers[i].poll();
+				if (r == i && c < M - i - 1)
+					c++;
+				else if (r < N - i - 1 && c == M - i - 1)
+					r++;
+				else if (r == N - i - 1 && c > i)
+					c--;
+				else
+					r--;
+			} while (r != i || c != i);
+		}
+		
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++)
 				sb.append(matrix[i][j]).append(" ");
