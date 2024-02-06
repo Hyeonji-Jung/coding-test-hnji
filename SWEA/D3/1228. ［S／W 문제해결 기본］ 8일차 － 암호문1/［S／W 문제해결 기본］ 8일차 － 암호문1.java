@@ -6,7 +6,6 @@ public class Solution {
 
 	static class Node {
 		int data;
-		Node prev = null;
 		Node next = null;
 
 		Node() {}
@@ -31,7 +30,6 @@ public class Solution {
 				curr = curr.next;
 
 			Node newNode = new Node(data);
-			newNode.prev = curr;
 			newNode.next = curr.next;
 			curr.next = newNode;
 			this.size++;
@@ -46,11 +44,8 @@ public class Solution {
 				curr = curr.next;
 			for (int i = 0; i < cnt; i++) {
 				Node newNode = new Node(data[i]);
-				newNode.prev = curr;
 				newNode.next = curr.next;
 				curr.next = newNode;
-				if (curr.next != null)
-					curr.next.prev = newNode;
 				curr = newNode;
 			}
 			size += cnt;
