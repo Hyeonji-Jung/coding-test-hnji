@@ -25,13 +25,12 @@ public class Main {
 			for (int j = 0; j < M; j++)
 				matrix[i][j] = Integer.parseInt(tokens.nextToken());
 		}
-		
+
 		depth = Math.min(N, M) / 2;
 		layers = new Deque[depth];
 		for (int i = 0; i < depth; i++) {
 			layers[i] = new ArrayDeque<>();
-			int r = i;
-			int c = i;
+			int r = i, c = i;
 			do {
 				layers[i].add(matrix[r][c]);
 				if (r == i && c < M - i - 1)
@@ -43,10 +42,10 @@ public class Main {
 				else
 					r--;
 			} while (r != i || c != i);
-			
+
 			for (int j = 0; j < R; j++)
 				layers[i].offer(layers[i].poll());
-			
+
 			r = i;
 			c = i;
 			do {
@@ -61,7 +60,7 @@ public class Main {
 					r--;
 			} while (r != i || c != i);
 		}
-		
+
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++)
 				sb.append(matrix[i][j]).append(" ");
