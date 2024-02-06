@@ -9,7 +9,7 @@ public class Solution {
 	private static StringBuilder sb = new StringBuilder();
 	private static StringTokenizer tokens;
 
-	private static int TC, N, M, max;
+	private static int TC, N, M;
 	private static int[] snacks;
 
 	public static void main(String[] args) throws Exception {
@@ -23,6 +23,7 @@ public class Solution {
 			for (int i = 0; i < N; i++)
 				snacks[i] = Integer.parseInt(tokens.nextToken());
 			Arrays.sort(snacks);
+			
 			int max = -1;
 			int left = 0;
 			int right = N - 1;
