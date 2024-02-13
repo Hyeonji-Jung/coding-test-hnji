@@ -27,9 +27,9 @@ public class Solution {
 		B[j] = temp;
 		int k = 8;
 		while (i < k) {
-			int tmp = B[i];
+			temp = B[i];
 			B[i] = B[k];
-			B[k] = tmp;
+			B[k] = temp;
 			i++;
 			k--;
 		}
@@ -69,7 +69,6 @@ public class Solution {
 				else if (total < 0)
 					loseCnt++;
 			} while (np());
-
 			sb.append("#").append(t).append(" ").append(winCnt).append(" ").append(loseCnt).append("\n");
 		}
 		System.out.println(sb);
