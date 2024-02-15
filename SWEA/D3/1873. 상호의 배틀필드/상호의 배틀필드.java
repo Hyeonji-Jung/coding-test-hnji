@@ -87,9 +87,9 @@ public class Solution {
 					move();
 				}
 			}
-			sb.append("#" + t + " ");
+			sb.append("#").append(t).append(" ");
 			for (int i = 0; i < H; i++)
-				sb.append(String.valueOf(map[i]) + "\n");
+				sb.append(String.valueOf(map[i])).append("\n");
 		}
 		System.out.println(sb);
 	}
