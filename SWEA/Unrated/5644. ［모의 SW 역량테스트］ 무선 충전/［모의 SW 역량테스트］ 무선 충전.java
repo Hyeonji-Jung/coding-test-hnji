@@ -37,11 +37,6 @@ public class Solution {
 		public int compareTo(BC o) {
 			return -Integer.compare(this.p, o.p);
 		}
-
-		@Override
-		public String toString() {
-			return "BC" + num + " " + p;
-		}
 	}
 
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
