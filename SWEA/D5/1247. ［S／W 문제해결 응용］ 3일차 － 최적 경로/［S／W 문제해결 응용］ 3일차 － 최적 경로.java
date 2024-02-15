@@ -12,10 +12,6 @@ public class Solution {
 			this.x = x;
 			this.y = y;
 		}
-
-		static int getDist(Pos p1, Pos p2) {
-			return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y);
-		}
 	}
 
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,15 +22,19 @@ public class Solution {
 	private static Pos company, home;
 	private static Pos[] customers;
 
-	public static void dfs(int depth, int dist, Pos curr, boolean[] visited) {
+	private static int getDist(Pos p1, Pos p2) {
+		return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y);
+	}
+
+	private static void dfs(int depth, int dist, Pos curr, boolean[] visited) {
 		if (depth == N) {
-			minDist = Math.min(minDist, dist + Pos.getDist(curr, home));
+			minDist = Math.min(minDist, dist + getDist(curr, home));
 			return;
 		}
 		for (int i = 0; i < N; i++) {
 			if (visited[i])
 				continue;
-			int nextDist = dist + Pos.getDist(curr, customers[i]);
+			int nextDist = dist + getDist(curr, customers[i]);
 			if (nextDist < minDist) {
 				visited[i] = true;
 				dfs(depth + 1, nextDist, customers[i], visited);
