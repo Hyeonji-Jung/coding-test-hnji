@@ -21,24 +21,22 @@ public class Solution {
 	private static int T, N, minDist;
 	private static Pos company, home;
 	private static Pos[] customers;
-	private static boolean[] visited;
 
 	private static int getDist(Pos p1, Pos p2) {
 		return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y);
 	}
 
-	private static void dfs(int depth, int dist, Pos curr) {
+	private static void dfs(int depth, int dist, Pos curr, boolean[] visited) {
+		if (dist > minDist)
+			return;
 		if (depth == N) {
 			minDist = Math.min(minDist, dist + getDist(curr, home));
 			return;
 		}
 		for (int i = 0; i < N; i++) {
-			if (visited[i])
-				continue;
-			int nextDist = dist + getDist(curr, customers[i]);
-			if (nextDist < minDist) {
+			if (!visited[i]) {
 				visited[i] = true;
-				dfs(depth + 1, nextDist, customers[i]);
+				dfs(depth + 1, dist + getDist(curr, customers[i]), customers[i], visited);
 				visited[i] = false;
 			}
 		}
@@ -55,10 +53,7 @@ public class Solution {
 			for (int i = 0; i < N; i++)
 				customers[i] = new Pos(Integer.parseInt(tokens.nextToken()), Integer.parseInt(tokens.nextToken()));
 			minDist = Integer.MAX_VALUE;
-			for (int i = 0; i < N; i++) {
-				visited = new boolean[N];
-				dfs(0, 0, company);
-			}
+			dfs(0, 0, company, new boolean[N]);
 			sb.append("#" + t + " ").append(minDist).append("\n");
 		}
 		System.out.println(sb);
