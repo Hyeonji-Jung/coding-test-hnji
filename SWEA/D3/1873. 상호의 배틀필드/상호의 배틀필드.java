@@ -11,8 +11,7 @@ public class Solution {
 	private static int T, H, W, N, currX, currY, dir;
 	private static int UP = 0, DOWN = 1, LEFT = 2, RIGHT = 3;
 	private static int[][] delta = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
-	private static char[] tank = { '^', 'v', '<', '>' };
-	private static char[] comm;
+	private static char[] tank = { '^', 'v', '<', '>' }, comm;
 	private static char[][] map;
 
 	private static void move() {
@@ -90,7 +89,7 @@ public class Solution {
 			}
 			sb.append("#" + t + " ");
 			for (int i = 0; i < H; i++)
-				sb.append(String.valueOf(map[i])).append("\n");
+				sb.append(String.valueOf(map[i]) + "\n");
 		}
 		System.out.println(sb);
 	}
