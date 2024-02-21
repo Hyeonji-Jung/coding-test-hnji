@@ -31,10 +31,8 @@ public class Main {
 				int nx = curr.x + d[i][0];
 				int ny = curr.y + d[i][1];
 				if (nx >= 0 && nx < N && ny >= 0 && ny < N && !visited[nx][ny] && pic[x][y] == pic[nx][ny]) {
-
 					visited[nx][ny] = true;
 					q.offer(new Pos(nx, ny));
-
 				}
 			}
 		}
@@ -45,6 +43,7 @@ public class Main {
 		pic = new char[N][];
 		for (int i = 0; i < N; i++)
 			pic[i] = br.readLine().toCharArray();
+
 		visited = new boolean[N][N];
 		for (int i = 0; i < N; i++)
 			for (int j = 0; j < N; j++)
@@ -52,10 +51,12 @@ public class Main {
 					bfs(i, j);
 					area1++;
 				}
+
 		for (int i = 0; i < N; i++)
 			for (int j = 0; j < N; j++)
 				if (pic[i][j] == 'R')
 					pic[i][j] = 'G';
+
 		visited = new boolean[N][N];
 		for (int i = 0; i < N; i++)
 			for (int j = 0; j < N; j++)
