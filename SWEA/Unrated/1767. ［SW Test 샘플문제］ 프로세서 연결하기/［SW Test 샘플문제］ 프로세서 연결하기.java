@@ -23,6 +23,8 @@ public class Solution {
 	private static int[][] m, d = new int[][] { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
 
 	private static void connect(int depth, int cnt, int wire) {
+		if (coreCnt - depth + cnt < maxCore)
+			return;
 		if (depth == coreCnt) {
 			if (cnt > maxCore) {
 				maxCore = cnt;
