@@ -1,5 +1,5 @@
 N = int(input())
-dp = [0 for _ in range(1_000_001)]
+dp = [0 for _ in range(N+2)]
 dp[1] = 1
 dp[2] = 2
 for i in range(3, N + 1):
